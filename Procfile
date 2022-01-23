@@ -1,1 +1,1 @@
-worker: java -jar src/main/java/Bot.java
+worker: java -jar target/TerrorBot-1.0-SNAPSHOT.jar

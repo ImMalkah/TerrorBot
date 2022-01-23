@@ -1,0 +1,10 @@
+commands/Clear.class
+events/ServerLeave.class
+commands/Bing.class
+events/EveryoneCooldown.class
+Token.class
+events/ServerJoin.class
+commands/BoosterInfo.class
+events/SpamTrap.class
+commands/Online.class
+Bot.class

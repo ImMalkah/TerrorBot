@@ -13,7 +13,7 @@ public class Bing extends ListenerAdapter {
             event.getChannel().sendTyping().queue();
             String yo = event.getTextChannel().getName();
             Objects.requireNonNull(event.getChannel().getHistory().retrievePast(5)).queue();
-            event.getChannel().sendMessage("bong " + yo).queue();
+            event.getChannel().sendMessage("bonggggg " + yo).queue();
         }
 
     }

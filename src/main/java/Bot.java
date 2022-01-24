@@ -37,7 +37,7 @@ public class Bot {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                jda.getGuildById(661503702397485057L).getDefaultChannel().sendMessage("Allahu Akbar! every 10 seconds test").queue();
+                System.out.println("hasd");
             }
         };
         Calendar date = Calendar.getInstance();

@@ -41,9 +41,9 @@ public class Bot {
             }
         };
         Calendar date = Calendar.getInstance();
-        date.set(Calendar.HOUR_OF_DAY, 1);
-        date.set(Calendar.MINUTE, 6);
-        date.set(Calendar.SECOND, 0);
+        date.set(Calendar.HOUR_OF_DAY, 6);
+        date.set(Calendar.MINUTE, 7);
+        date.set(Calendar.SECOND, 15);
         timer.scheduleAtFixedRate(task, date.getTime(), 10000);
     }
 }

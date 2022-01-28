@@ -6,6 +6,7 @@ import commands.Clear;
 import commands.Online;
 import events.EveryoneCooldown;
 import events.ServerJoin;
+import events.ServerLeave;
 import events.SpamTrap;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.JDA;
@@ -28,7 +29,7 @@ public class Bot {
                 GatewayIntent.GUILD_EMOJIS,
                 GatewayIntent.GUILD_VOICE_STATES);
         JDA jda = builder.addEventListeners(new Online(), new Bing(), new Clear(), new ServerJoin(),
-                new ServerJoin(), new BoosterInfo(), new SpamTrap(), new EveryoneCooldown()
+                new ServerLeave(), new BoosterInfo(), new SpamTrap(), new EveryoneCooldown()
         ).build();
         jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
         jda.getPresence().setActivity(Activity.playing("with bombs"));

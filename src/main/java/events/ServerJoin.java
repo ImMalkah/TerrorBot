@@ -34,10 +34,10 @@ public class ServerJoin extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event){
         Random rand = new Random();
         int number = rand.nextInt(messages.length);
-        EmbedBuilder em = new EmbedBuilder();
-        em.setColor(Color.GREEN);
-        em.setDescription(messages[number].replace("[member]", event.getMember().getAsMention()));
-        Objects.requireNonNull(event.getGuild().getDefaultChannel()).sendMessageEmbeds(em.build()).queue();
+        EmbedBuilder info = new EmbedBuilder();
+        info.setColor(Color.GREEN);
+        info.setDescription(messages[number].replace("[member]", "@" + event.getMember().getNickname()));
+        event.getGuild().getTextChannelById(757429616439853177L).sendMessageEmbeds(info.build()).queue();
         // Add role
         event.getGuild().addRoleToMember(event.getMember(), Objects.requireNonNull(event.getGuild().getRoleById(661532567362732043L))).queue();
         event.getGuild().addRoleToMember(event.getMember(), Objects.requireNonNull(event.getGuild().getRoleById(661542770225446928L))).queue();

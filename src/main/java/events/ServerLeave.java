@@ -13,6 +13,6 @@ public class ServerLeave extends ListenerAdapter {
         info.setTitle("Leave Event");
         info.setDescription("Good riddance " + event.getUser().getAsMention() + " has left the server.");
         info.setColor(Color.RED);
-        event.getGuild().getTextChannelById(759111183860236339L).sendMessageEmbeds(info.build()).queue();
+        Objects.requireNonNull(event.getGuild().getTextChannelById(759111183860236339L)).sendMessageEmbeds(info.build()).queue();
     }
 }

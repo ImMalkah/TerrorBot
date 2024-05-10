@@ -19,7 +19,7 @@ public class SpamTrap extends ListenerAdapter {
     private Map<User, Integer> warned = new HashMap<>();
 
     public void onMessageReceived(MessageReceivedEvent event) {
-        List<Message> history = event.getTextChannel().getIterableHistory().complete().stream().limit(7) // gets last 10 messages in channel
+        List<Message> history = event.getChannel().getIterableHistory().complete().stream().limit(7) // gets last 10 messages in channel
                 .filter(msg -> !msg.equals(event.getMessage())).collect(Collectors.toList()); // filters out the last message sent (does not include it)
         int spam = history.stream()
                 // gets the author of the previous message if it's the same author as the message sent and makes sure it's not a bot
@@ -41,14 +41,8 @@ public class SpamTrap extends ListenerAdapter {
                 event.getChannel().sendMessageEmbeds(info.build()).queue();
 
             } else {
-//                EmbedBuilder info = new EmbedBuilder();
-//                info.setColor(Color.RED);
-//                info.setTitle("Moderation");
-//                info.setDescription("Leave two seconds between messages, or else...");
-//                event.getChannel().sendMessageEmbeds(info.build()).queue();
                 System.out.println("hi");
             }
-
         }
     }
 }

@@ -1,52 +1,43 @@
 import javax.security.auth.login.LoginException;
 
-import commands.Bing;
-import commands.BoosterInfo;
-import commands.Clear;
-import commands.Online;
-import events.EveryoneCooldown;
-import events.ServerJoin;
-import events.ServerLeave;
-import events.SpamTrap;
-import net.dv8tion.jda.api.OnlineStatus;
+import commands.*;
+import events.*;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
-import java.util.Calendar;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class Bot {
-    public static String prefix = "~"; // command prefix
-    public static void main(String[] args) throws InterruptedException, LoginException {
-        JDABuilder builder = JDABuilder.create(Token.token,
-                GatewayIntent.GUILD_MEMBERS,
-                GatewayIntent.GUILD_MESSAGES,
-                GatewayIntent.GUILD_PRESENCES,
-                GatewayIntent.GUILD_EMOJIS,
-                GatewayIntent.GUILD_VOICE_STATES);
-        JDA jda = builder.addEventListeners(new Online(), new Bing(), new Clear(), new ServerJoin(),
-                new ServerLeave(), new BoosterInfo(), new SpamTrap(), new EveryoneCooldown()
-        ).build();
-        jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
-        jda.getPresence().setActivity(Activity.playing("with bombs"));
+public static void main(String[] args) throws InterruptedException, LoginException {
+    JDA jda = JDABuilder.create(Token.token,
+        GatewayIntent.GUILD_MEMBERS,
+        GatewayIntent.GUILD_MESSAGES,
+        GatewayIntent.GUILD_PRESENCES,
+        GatewayIntent.GUILD_VOICE_STATES,
+        GatewayIntent.GUILD_MESSAGE_REACTIONS)
+            .addEventListeners(
+                    new SpamTrap(),
+                    new EveryoneCooldown(),
+                    new SlashCommandListener(),
+                    new ModalListener(),
+                    new EmojiReaction())
+            .setActivity(Activity.playing("with bombs"))
+            .setStatus(OnlineStatus.DO_NOT_DISTURB)
+            .build();
 
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                Objects.requireNonNull(Objects.requireNonNull(jda.getGuildById(661503702397485057L))
-                        .getTextChannelById(757429616439853177L))
-                        .sendMessage("9:11PM... Allahu Akbar!").queue();
-            }
-        };
-        Calendar date = Calendar.getInstance();
-        date.set(Calendar.HOUR_OF_DAY, 21);
-        date.set(Calendar.MINUTE, 11);
-        date.set(Calendar.SECOND, 1);
-        timer.scheduleAtFixedRate(task, date.getTime(), 86_400_000);
-    }
+    CommandListUpdateAction commands = jda.updateCommands();
+
+    commands.addCommands(
+            Commands.slash("createembed", "Create an embed")
+                    .addOption(OptionType.STRING, "title", "The title of the embed", false)
+                    .addOption(OptionType.STRING, "body", "The body of the embed", false)
+                    .addOption(OptionType.STRING, "image", "The image of the embed", false)
+                    .setDefaultPermissions(DefaultMemberPermissions.ENABLED)
+    );
+    commands.queue();
 }

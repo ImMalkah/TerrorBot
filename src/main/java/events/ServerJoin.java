@@ -40,7 +40,6 @@ public class ServerJoin extends ListenerAdapter {
         Objects.requireNonNull(event.getGuild().getTextChannelById(757429616439853177L)).sendMessageEmbeds(info.build()).queue();
         // Add role
         event.getGuild().addRoleToMember(event.getMember(), Objects.requireNonNull(event.getGuild().getRoleById(661532567362732043L))).queue();
-        event.getGuild().addRoleToMember(event.getMember(), Objects.requireNonNull(event.getGuild().getRoleById(661542770225446928L))).queue();
 
     }
 

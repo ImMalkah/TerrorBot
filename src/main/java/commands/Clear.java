@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Clear extends ListenerAdapter {
-
     public void onMessageReceived(MessageReceivedEvent event) {
         String[] args = event.getMessage().getContentRaw().split("\\s+");
-
 
         if (args[0].equalsIgnoreCase("~clear")) {
             if (Objects.requireNonNull(event.getMember()).hasPermission(Permission.MESSAGE_MANAGE)) {

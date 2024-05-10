@@ -18,11 +18,12 @@ public class EveryoneCooldown extends ListenerAdapter
         List<Role> appliedRoles = event.getMember().getRoles();
         boolean hasRole = appliedRoles.stream().anyMatch(role -> event.getMember().getRoles().contains(role.getGuild().getRoleById(934667101669589032L)));
 
-        if(!oldUser && !event.getMember().getUser().isBot() && event.getMessage().mentionsEveryone())
+        if(!oldUser && !event.getMember().getUser().isBot() && event.getMessage().getMentions().mentionsEveryone())
         {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("Not allowed to mention everyone if you're a new member.").queue();
         }
+
         if(oldUser && !hasRole)
         {
             event.getGuild().addRoleToMember(

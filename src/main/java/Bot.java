@@ -15,11 +15,11 @@ import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
 public static void main(String[] args) throws InterruptedException, LoginException {
     JDA jda = JDABuilder.create(Token.token,
-        GatewayIntent.GUILD_MEMBERS,
-        GatewayIntent.GUILD_MESSAGES,
-        GatewayIntent.GUILD_PRESENCES,
-        GatewayIntent.GUILD_VOICE_STATES,
-        GatewayIntent.GUILD_MESSAGE_REACTIONS)
+                    GatewayIntent.GUILD_MEMBERS,
+                    GatewayIntent.GUILD_MESSAGES,
+                    GatewayIntent.GUILD_PRESENCES,
+                    GatewayIntent.GUILD_VOICE_STATES,
+                    GatewayIntent.GUILD_MESSAGE_REACTIONS)
             .addEventListeners(
                     new SpamTrap(),
                     new EveryoneCooldown(),

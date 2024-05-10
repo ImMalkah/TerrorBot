@@ -22,6 +22,8 @@ public class SlashCommandListener extends ListenerAdapter {
                 event.reply("Embed Created")
                         .setEphemeral(true)
                         .queue();
+
+
             }
         } catch (Exception e) {
             e.printStackTrace();

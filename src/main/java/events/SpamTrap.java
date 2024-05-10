@@ -31,11 +31,11 @@ public class SpamTrap extends ListenerAdapter {
             if (warned.containsKey(event.getAuthor()))
                 timesWarned = warned.get(event.getAuthor());
             warned.put(event.getAuthor(), timesWarned + 1);
-            if (timesWarned == 3) {
+            if (timesWarned == 5) {
                 event.getMember().timeoutFor(5, TimeUnit.MINUTES).queue();
                 EmbedBuilder info = new EmbedBuilder();
                 info.setColor(Color.RED);
-                info.setTitle("Moderation");
+                info.setTitle("Moderation Module");
                 info.setDescription(event.getAuthor().getAsMention() + " has been timed out for 5 minutes");
                 info.addField("Reason","Repeated spamming",true);
                 event.getChannel().sendMessageEmbeds(info.build()).queue();

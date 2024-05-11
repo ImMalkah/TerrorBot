@@ -15,7 +15,11 @@
             <artifactId>JDA</artifactId>
             <version>5.0.0-beta.12</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -26,7 +30,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.10</version>
+            <version>1.4.12</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
         <dependency>
@@ -34,8 +38,6 @@
             <artifactId>maven-enforcer-plugin</artifactId>
             <version>3.0.0</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -48,7 +50,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>Bot</mainClass>
+                            <mainClass>runtime</mainClass>
                             <name>bot</name>
                         </program>
                     </programs>

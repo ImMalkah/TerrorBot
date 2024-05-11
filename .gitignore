@@ -3,6 +3,7 @@
 *.class
 
 /src/main/java/Token.java
+.env
 
 # Log file
 *.log
